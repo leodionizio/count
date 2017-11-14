@@ -1,0 +1,39 @@
+<ion-segment [(ngModel)]="typeInfo" [color]="typeInfo === 'renda' ? 'success' : 'danger'">
+  <ion-segment-button value="gasto">
+    Gasto
+  </ion-segment-button>
+  <ion-segment-button value="renda">
+    Renda
+  </ion-segment-button>
+</ion-segment>
+<br />
+<ion-list>
+  <ion-item>
+    <ion-label>Descrição</ion-label>
+    <ion-input class="input-end" type="text" maxlength="20" placeholder="digite aqui..."></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Valor</ion-label>
+    <ion-input class="input-end" type="number" placeholder="R$"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Parcelas</ion-label>
+    <ion-select>
+      <ion-option default value="1">1</ion-option>
+      <ion-option value="2">2</ion-option>
+      <ion-option value="3">3</ion-option>
+      <ion-option value="4">4</ion-option>
+      <ion-option value="5">5</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Categoria</ion-label>
+    <ion-select>
+      <ion-option default value="1">Casa</ion-option>
+      <ion-option value="2">Cartão</ion-option>
+      <ion-option value="3">Outros</ion-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+
+<button type="button" ion-button full clear color="success">Lançar</button>

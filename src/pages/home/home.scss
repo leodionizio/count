@@ -1,3 +1,33 @@
 page-home {
+  ion-slides {
+    height: auto !important;
+    // max-height: 75% !important;
+  }
+  ion-slide.swiper-slide{
+    text-align-last: start;
 
+    .slide-title{
+      margin: none;
+      padding: 5px 15px;
+      width: 100%;
+      background: #1a8cff;
+      color: #fff;
+    }
+    .slide-content {
+      height: 48vh !important;
+      padding: 15px 15px;
+      align-items: flex-start;
+      text-align: left !important;
+      box-shadow: 1px 1px 5px #333;
+      border-bottom: 2px solid #1a8cff;
+      overflow: scroll;
+    }
+
+    .btn-fixed {
+      position: absolute !important;
+      bottom: 0 !important;
+      z-index: 1051;
+    }
+
+  }
 }
