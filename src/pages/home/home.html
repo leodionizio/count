@@ -5,60 +5,71 @@
 </ion-header>
 
 <ion-content>
+
+  <!-- card que mostra o saldo -->
   <ion-card>
     <ion-card-header>
       <h2>Saldo</h2>
     </ion-card-header>
-    <ion-card-content>
-      <h1>R$ 1000,00</h1>
+    <ion-card-content text-center [ngClass]="saldo > 0 ? 'pos' : 'neg'">
+      <h1>R$ {{ saldo }}</h1>
     </ion-card-content>
   </ion-card>
 
+  <!-- slides dos meses -->
   <ion-slides>
-    <ion-slide>
-      <div class="slide-title">
-        <h5>Janeiro - 2017</h5>
+    <ion-slide *ngFor="let month of months">
+      <!-- titulo do slide -->
+      <div class="slide-title" text-center>
+        <h5>
+          <ion-icon name="calendar"></ion-icon>
+           &emsp;{{ month.descriptionMonth }} - 2017
+         </h5>
       </div>
+
+      <!-- conteudo do slide -->
       <div class="slide-content">
-        <h6>Conta 1 - Valor: R$500,00</h6>
-        <h6>Conta 2 - Valor: R$12,00</h6>
-        <h6>Conta 3 - Valor: R$33,00</h6>
-        <h6>Conta 4 - Valor: R$330,00</h6>
-        <h6>Conta 5 - Valor: R$4,00</h6>
-        <h6>Conta 3 - Valor: R$33,00</h6>
-        <h6>Conta 4 - Valor: R$330,00</h6>
-        <h6>Conta 5 - Valor: R$4,00</h6>
-        <h6>Conta 3 - Valor: R$33,00</h6>
-        <h6>Conta 4 - Valor: R$330,00</h6>
-        <h6>Conta 5 - Valor: R$4,00</h6>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-8>
+              Compra de alguma coisa
+            </ion-col>
+            <ion-col col-4>
+              R$ 50,00
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-8>
+              Vestido
+            </ion-col>
+            <ion-col col-4>
+              R$ 50,00
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-8>
+              Subway
+            </ion-col>
+            <ion-col col-4>
+              R$ 50,00
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
       </div>
     </ion-slide>
-    <ion-slide>
-      <div class="slide-title">
-        <h5>Janeiro - 2017</h5>
-      </div>
-      <div class="slide-content">
-        <h6>Conta 1 - Valor: R$500,00</h6>
-        <h6>Conta 2 - Valor: R$12,00</h6>
-        <h6>Conta 3 - Valor: R$33,00</h6>
-        <h6>Conta 4 - Valor: R$330,00</h6>
-        <h6>Conta 5 - Valor: R$4,00</h6>
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <div class="slide-title">
-        <h5>Janeiro - 2017</h5>
-      </div>
-      <div class="slide-content">
-        <h6>Conta 1 - Valor: R$500,00</h6>
-        <h6>Conta 2 - Valor: R$12,00</h6>
-        <h6>Conta 3 - Valor: R$33,00</h6>
-        <h6>Conta 4 - Valor: R$330,00</h6>
-        <h6>Conta 5 - Valor: R$4,00</h6>
-      </div>
-    </ion-slide>
+
   </ion-slides>
 
-  <button type="button" ion-button full color="success" class="btn-fixed">Novo Lançamento</button>
+  <!-- botão para gerar novo lançamento -->
+  <button ion-button full color="success" style="
+  position: fixed !important;
+  bottom: 0 !important;
+  z-index: 1051;
+  padding: 0;
+  margin: 0;
+  border: none;
+  height: 45px;
+  " (click)="pushTo('NewFinancesPage')">Novo Lançamento</button>
 
 </ion-content>

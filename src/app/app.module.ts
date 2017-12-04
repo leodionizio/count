@@ -7,30 +7,35 @@ import { SQLite } from '@ionic-native/sqlite';
 
 import { ComponentsModule } from './../components/components.module';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { SqliteConnService } from '../providers/sqlite-conn/sqlite-conn.service';
+import { IncomeService } from '../providers/income/income.service';
+import { SpentService } from '../providers/spent/spent.service';
+import { CategoryService } from '../providers/category/category.service';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
   ],
   imports: [
     BrowserModule,
     ComponentsModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      mode: 'md'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     SQLite,
     SqliteConnService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    IncomeService,
+    SpentService,
+    CategoryService,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
 export class AppModule {}

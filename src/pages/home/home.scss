@@ -1,33 +1,85 @@
+$border-slide: 4px solid map-get($colors, primary) !important;
+$color-primary: map-get($colors, primary);
+$color-light: map-get($colors, light);
+$color-success: map-get($colors, success);
+$color-danger: map-get($colors, danger);
+
 page-home {
+ion-grid.grid, ion-row.row, ion-col.col {
+  padding: 0;
+  padding-top: 2px;
+}
+
+
+  ion-content.content.content-md {
+    background-color: $color-primary !important;
+  }
+
+  ion-card.card {
+    position: fixed;
+    top: 60px;
+    z-index: 1051;
+    background-color: $color-light !important;
+
+    span {
+      color: inherit;
+    }
+
+    h1,
+    h2 {
+      & {
+        font-weight: bold;
+      }
+      color: $color-primary;
+    }
+
+    .pos {
+      h1 {
+        color: $color-success !important;
+      }
+    }
+
+    .neg {
+      h1 {
+        color: $color-danger !important;
+      }
+    }
+  }
+
   ion-slides {
     height: auto !important;
     // max-height: 75% !important;
   }
-  ion-slide.swiper-slide{
+
+  ion-slide.swiper-slide {
+    margin-top: 140px;
     text-align-last: start;
 
-    .slide-title{
+    .slide-title {
       margin: none;
-      padding: 5px 15px;
+      padding: 5px 7px;
       width: 100%;
-      background: #1a8cff;
-      color: #fff;
+      text-align: center;
+      background-color: $color-light !important;
+      border-left: $border-slide;
+      border-right: $border-slide;
+      color: map-get($colors, primary);
     }
+
     .slide-content {
-      height: 48vh !important;
-      padding: 15px 15px;
+      height: 56vh !important;
+      padding-left: 15px;
+      padding-bottom: 58px;
       align-items: flex-start;
       text-align: left !important;
+      color: #666;
       box-shadow: 1px 1px 5px #333;
-      border-bottom: 2px solid #1a8cff;
+      border-top: 1px solid #999;
+      border-left: $border-slide;
+      border-right: $border-slide;
+      border-bottom: $border-slide;
       overflow: scroll;
+      background-color: $color-light !important;
     }
-
-    .btn-fixed {
-      position: absolute !important;
-      bottom: 0 !important;
-      z-index: 1051;
-    }
-
   }
 }

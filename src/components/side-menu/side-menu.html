@@ -1,8 +1,13 @@
-<ion-content >
+<ion-content padding>
 
-  <ion-list>
-    <button ion-item detail-none menuClose="side-menu" (click)="toPage('NewFinancesPage')">
-      Lançar Finanças
+  <div class="menu-title">
+    <h1>Count</h1>
+  </div>
+
+  <ion-list no-lines>
+    <button *ngFor="let item of itemsMenu" ion-item detail-none menuClose="side-menu" (click)="toPage(item.page)" icon-left>
+      <ion-icon [name]="item.icon"></ion-icon>
+        {{ item.label }}
     </button>
   </ion-list>
 

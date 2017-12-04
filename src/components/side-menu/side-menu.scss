@@ -1,3 +1,30 @@
-side-menu {
+$background-color: map-get($colors, light);
+$text-color: map-get($colors, primary);
 
+side-menu {
+  .menu-title {
+    padding-top: 15px;
+    text-align: center;
+    color: $text-color !important;
+    font-family: 'Unlock', cursive;
+  }
+
+  .scroll-content {
+    border: none;
+    background-color: $background-color;
+
+    ion-list {
+      margin-top: 30px;
+    }
+
+    button.item.item-block {
+      ion-icon {
+        margin-right: 20px;
+      }
+      margin-top: 15px;
+      color: $text-color;
+      background-color: $background-color;
+      border-bottom: 1px solid $text-color;
+    }
+  }
 }

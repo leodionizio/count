@@ -1,0 +1,69 @@
+<ion-header>
+
+  <header-menu [title]="'Gerenciar Categorias'"></header-menu>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div text-center>
+    <h5>Categorias Cadastradas</h5>
+  </div>
+  <ion-list class="category-list">
+    <div text-center>
+      <h6 *ngIf="categories.length < 1"> Ainda não há categorias cadastradas</h6>
+    </div>
+    <button ion-item *ngFor="let category of categories" (click)="editCategory(category)">
+      {{ category.description }}
+    </button>
+  </ion-list>
+
+  <div text-center>
+    <h5 *ngIf="newCategory">Nova Categoria</h5>
+    <h5 *ngIf="!newCategory" style="margin-bottom: 0">Editar Categoria</h5>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <button *ngIf="!newCategory" ion-button type="button" clear block icon-only color="primary" (click)="insertNewCategory()">
+        Nova
+      </button>
+        </ion-col>
+        <ion-col col-6>
+          <button *ngIf="!newCategory" ion-button type="button" clear block icon-only color="danger" (click)="removeCategory()">
+        Excluir
+      </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <form (ngSubmit)="saveCategory()" [formGroup]="categoryForm">
+    <ion-list>
+      <ion-item>
+        <ion-label>Descrição</ion-label>
+        <ion-input type="text" class="input-end" placeholder="descrição da categoria..." formControlName="description"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tipo</ion-label>
+        <ion-select type="text" class="input-end" placeholder="tipo da categoria..." formControlName="type">
+          <ion-option value="0">Renda</ion-option>
+          <ion-option value="1">Gasto</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <br /><br /><br />
+
+    <!-- botão enviar form -->
+    <button type="submit" ion-button full color="success" style="
+    position: fixed !important;
+    bottom: 0 !important;
+    z-index: 1051;
+    padding: 0;
+    margin: 0;
+    border: none;
+    height: 45px;
+    " [disabled]="!categoryForm.valid">Salvar</button>
+  </form>
+
+</ion-content>

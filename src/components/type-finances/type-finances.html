@@ -1,4 +1,5 @@
-<ion-segment [(ngModel)]="typeInfo" [color]="typeInfo === 'renda' ? 'success' : 'danger'">
+<ion-segment [(ngModel)]="typeInfo" [color]="typeInfo === 'renda' ? 'success' : 'danger'" padding-top>
+  <!-- menu de alterar conteudo = gasto e renda -->
   <ion-segment-button value="gasto">
     Gasto
   </ion-segment-button>
@@ -7,33 +8,98 @@
   </ion-segment-button>
 </ion-segment>
 <br />
-<ion-list>
-  <ion-item>
-    <ion-label>Descrição</ion-label>
-    <ion-input class="input-end" type="text" maxlength="20" placeholder="digite aqui..."></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Valor</ion-label>
-    <ion-input class="input-end" type="number" placeholder="R$"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Parcelas</ion-label>
-    <ion-select>
-      <ion-option default value="1">1</ion-option>
-      <ion-option value="2">2</ion-option>
-      <ion-option value="3">3</ion-option>
-      <ion-option value="4">4</ion-option>
-      <ion-option value="5">5</ion-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label>Categoria</ion-label>
-    <ion-select>
-      <ion-option default value="1">Casa</ion-option>
-      <ion-option value="2">Cartão</ion-option>
-      <ion-option value="3">Outros</ion-option>
-    </ion-select>
-  </ion-item>
-</ion-list>
 
-<button type="button" ion-button full clear color="success">Lançar</button>
+<!-- switch tipo de form -->
+
+<div [ngSwitch]="typeInfo">
+  <!-- GASTOS -->
+  <ion-list padding *ngSwitchCase="'gasto'">
+    <form (ngSubmit)="saveData()" [formGroup]="gastosForm">
+
+      <!-- descrição -->
+      <ion-item>
+        <ion-label>Descrição</ion-label>
+        <ion-input class="input-end" type="text" maxlength="20" placeholder="digite aqui..." formControlName="description"></ion-input>
+      </ion-item>
+
+      <!-- valor -->
+      <ion-item>
+        <ion-label>Valor</ion-label>
+        <ion-input class="input-end" type="number" placeholder="R$" formControlName="value"></ion-input>
+      </ion-item>
+
+      <!-- data -->
+      <ion-item>
+        <ion-label>Data</ion-label>
+        <ion-input class="input-end" type="date" formControlName="date"></ion-input>
+      </ion-item>
+
+      <!-- parcelas -->
+      <ion-item>
+        <ion-label>Parcelas</ion-label>
+        <ion-select formControlName="parcel">
+          <ion-option default value="1">1</ion-option>
+          <ion-option value="2">2</ion-option>
+          <ion-option value="3">3</ion-option>
+          <ion-option value="4">4</ion-option>
+          <ion-option value="5">5</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- categoria -->
+      <ion-item>
+        <ion-label>Categoria</ion-label>
+        <ion-select formControlName="category">
+          <ion-option default value="1">Casa</ion-option>
+          <ion-option value="2">Cartão</ion-option>
+          <ion-option value="3">Outros</ion-option>
+        </ion-select>
+      </ion-item>
+    </form>
+  </ion-list>
+
+  <!-- // -.-.-.-.-.-.-..-.-.-.-.-.-.-.-.-.-.-.-.-.-.-..-.-.-.-.-.-.-.-.-.- // -->
+  <!-- RENDA -->
+  <ion-list padding *ngSwitchCase="'renda'">
+    <form (ngSubmit)="saveData()" [formGroup]="rendaForm">
+      <!-- descricao -->
+      <ion-item>
+        <ion-label>Descrição</ion-label>
+        <ion-input class="input-end" type="text" maxlength="20" placeholder="digite aqui..."></ion-input>
+      </ion-item>
+
+      <!-- valor -->
+      <ion-item>
+        <ion-label>Valor</ion-label>
+        <ion-input class="input-end" type="number" placeholder="R$"></ion-input>
+      </ion-item>
+
+      <!-- data -->
+      <ion-item>
+        <ion-label>Data</ion-label>
+        <ion-input class="input-end" type="date" placeholder="dd/mm/aaaa"></ion-input>
+      </ion-item>
+
+      <!-- categoria -->
+      <ion-item>
+        <ion-label>Categoria</ion-label>
+        <ion-select>
+          <ion-option default value="1">Casa</ion-option>
+          <ion-option value="2">Cartão</ion-option>
+          <ion-option value="3">Outros</ion-option>
+        </ion-select>
+      </ion-item>
+    </form>
+  </ion-list>
+</div>
+
+<!-- botão enviar form -->
+<button type="button" ion-button full color="success" style="
+position: fixed !important;
+bottom: 0 !important;
+z-index: 1051;
+padding: 0;
+margin: 0;
+border: none;
+height: 45px;
+" [disabled]="!rendaForm.valid || !gastosForm.valid" (click)="saveData()">Lançar</button>
